@@ -1,0 +1,52 @@
+-------------------------------------------------------------------------SNIPER--------------------------------------------------------------------------
+create: function(){
+//background
+        this.background = game.add.sprite(0, 0, 'background');
+		
+		    //	A mask is a Graphics object
+		this.mask = game.add.graphics(0, 0);
+		
+	
+		//	Shapes drawn to the Graphics object must be filled.
+		this.mask.beginFill(0xffffff);
+	
+		//	Here we'll draw a circle
+		this.mask.drawCircle(100, 100, 100);
+	
+		//	And apply it to the Sprite
+		this.background.mask = this.mask;
+	
+		//	As you move the mouse / touch, the circle will track the sprite
+		game.input.addMoveCallback(this.move, this);
+}
+
+move: function(pointer, x, y){
+
+		this.mask.x = x - 100;
+		this.mask.y = y - 100;
+
+},
+
+
+
+
+-------------------------------------------------------------------------------------------------MUA---------------------------------------------------------------------
+
+// RAINNNNNNNNNNNNNNNNNNNNNNNNN
+		var emitter = game.add.emitter(game.world.centerX, 0, 400);
+
+		emitter.width = game.world.width;
+		// emitter.angle = 30; // uncomment to set an angle for the rain.
+	
+		emitter.makeParticles('sword');
+	
+		emitter.minParticleScale = 0.1;
+		emitter.maxParticleScale = 0.5;
+	
+		emitter.setYSpeed(300, 500);
+		emitter.setXSpeed(-5, 5);
+	
+		emitter.minRotation = 0;
+		emitter.maxRotation = 0;
+	
+		emitter.start(false, 1600, 5, 0);
